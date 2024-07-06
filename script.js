@@ -12,8 +12,9 @@ function createGame() {
     tile.classList.add("tile");
     container.appendChild(tile);
   }
-
-  gridChange.addEventListener("click", (e) => {});
 }
 
 createGame();
+gridChange.addEventListener("click", (e) => {
+  console.log("yes");
+});
