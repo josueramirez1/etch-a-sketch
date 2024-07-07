@@ -16,6 +16,22 @@ function numberIn(num) {
   }
 }
 
+function createRandomColor() {
+  let color = "#";
+  let letters = [
+    "000000",
+    "FF0000",
+    "00FF00",
+    "0000FF",
+    "FFFF00",
+    "00FFFF",
+    "FF00FF",
+    "C0C0C0",
+  ];
+  color += letters[Math.floor(Math.random() * letters.length)];
+  return color;
+}
+
 function createGame() {
   let n = 16;
   numberIn(n);
@@ -27,7 +43,7 @@ createGame();
 // When user moves mouse over grid...
 container.addEventListener("mouseover", (e) => {
   if (!e.target.matches(".tile")) return;
-  e.target.style.backgroundColor = "red";
+  e.target.style.backgroundColor = createRandomColor();
 });
 // When button is clicked...
 gridChange.addEventListener("click", (e) => {
