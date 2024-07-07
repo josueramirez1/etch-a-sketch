@@ -20,23 +20,21 @@ body {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  width: 600px;
-  height: 600px;
+  width: 550px;
+  height: 550px;
 }
 
 .tile {
-  width: 36px;
-  height: 36px;
   border: 1px solid black;
   cursor: pointer;
-  flex: 1 1 auto;
+  flex: 0 0 auto;
 }
 
-.break {
-  width: 0;
+/* .break {
+  height: 0;
   flex-basis: 100%;
   border: 1px solid orange;
-}
+} */
 
 .gridChange {
   width: 8rem;

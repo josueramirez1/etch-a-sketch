@@ -4,14 +4,14 @@ const gridChange = document.querySelector(".gridChange");
 
 // helper functions
 function numberIn(num) {
-  for (let i = 1; i <= num * (num + 1); i++) {
+  for (let i = 1; i <= num * num; i++) {
     const tile = document.createElement("div");
-
-    if (i % (num + 1) === 0) {
-      tile.classList.add("break");
-    } else {
-      tile.classList.add("tile");
-    }
+    tile.classList.add("tile");
+    //   width and height added dynamically
+    let tempMeasure = 100 / num;
+    tile.style.height = `${tempMeasure}%`;
+    tile.style.width = `${tempMeasure}%`;
+    //   append to page
     container.appendChild(tile);
   }
 }
@@ -36,7 +36,7 @@ gridChange.addEventListener("click", (e) => {
   const breaks = [...document.querySelectorAll(".break")];
   // acquire number from prompt
   let numberInput = parseInt(prompt("Grid size per side?", ""));
-  if (numberInput > 38) {
+  if (numberInput > 100) {
     numberInput = 0;
     numberInput = parseInt(
       prompt("Grid size not acceptable. Please try another number", "")
