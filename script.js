@@ -1,20 +1,41 @@
+// global selectors
 const container = document.querySelector(".container");
 const gridChange = document.querySelector(".gridChange");
 
-container.addEventListener("mouseover", (e) => {
-  if (!e.target.matches(".tile")) return;
-  e.target.style.backgroundColor = "red";
-});
-
-function createGame() {
-  for (let index = 0; index < 272; index++) {
+// helper functions
+function numberIn(num) {
+  for (let i = 1; i <= num * (num + 1); i++) {
     const tile = document.createElement("div");
-    tile.classList.add("tile");
+    if (i % (num + 1) === 0) {
+      tile.classList.add("break");
+    } else tile.classList.add("tile");
     container.appendChild(tile);
   }
 }
 
+function createGame() {
+  let n = 16;
+  numberIn(n);
+}
+// Create standard 16 x 16 game.
 createGame();
+
+// Listen for events.
+// When user moves mouse over grid...
+container.addEventListener("mouseover", (e) => {
+  if (!e.target.matches(".tile")) return;
+  e.target.style.backgroundColor = "red";
+});
+// When button is clicked...
 gridChange.addEventListener("click", (e) => {
-  console.log("yes");
+  // selector
+  const tiles = [...document.querySelectorAll(".tile")];
+  // acquire number from prompt
+  let numberInput = parseInt(prompt("Grid size per side?", ""));
+  // for each current tile, delete
+  tiles.forEach((tile) => {
+    container.removeChild(tile);
+  });
+  // then add new grid based on input
+  numberIn(numberInput);
 });
