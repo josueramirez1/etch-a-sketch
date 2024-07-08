@@ -1,6 +1,7 @@
 // global selectors
 const container = document.querySelector(".container");
 const gridChange = document.querySelector(".gridChange");
+let lightness = 100;
 
 // helper functions
 function numberIn(num) {
@@ -17,19 +18,16 @@ function numberIn(num) {
 }
 
 function createRandomColor() {
-  let color = "#";
-  let letters = [
-    "000000",
-    "FF0000",
-    "00FF00",
-    "0000FF",
-    "FFFF00",
-    "00FFFF",
-    "FF00FF",
-    "C0C0C0",
-  ];
-  color += letters[Math.floor(Math.random() * letters.length)];
-  return color;
+  let colorName = "hsl";
+  let hue = Math.floor(Math.random() * 360);
+  let saturation = Math.floor(Math.random() * 100) + "%";
+  // let lightness = Math.floor(Math.random() * 100) + "%";
+  if (lightness > 0) {
+    lightness = lightness - 10;
+  }
+  colorName += `(${hue}, ${saturation}, ${lightness}%)`;
+
+  return colorName;
 }
 
 function createGame() {
@@ -41,9 +39,10 @@ createGame();
 
 // Listen for events.
 // When user moves mouse over grid...
+
 container.addEventListener("mouseover", (e) => {
   if (!e.target.matches(".tile")) return;
-  e.target.style.backgroundColor = createRandomColor();
+  e.target.style.background = createRandomColor();
 });
 // When button is clicked...
 gridChange.addEventListener("click", (e) => {
